@@ -192,5 +192,43 @@ public class Utils : MonoBehaviour {
 
 		return (Vector3.zero);
 	}
-	
+
+//========================== Transform Functions ==========================\\
+
+	//This function will iteratively climb up the transform.parent tree
+	//until it either finds a parent with a tag != "untagged" or no parent
+	public static GameObject FindTaggedParent(GameObject go) {
+		//If this gameObject has a tag
+		if (go.tag != "Untagged") {
+			//then return this gameObject
+			return(go);
+		}
+		//If there is no parent of this Transform
+		if (go.transform.parent == null) {
+			//We've reached the top of the heirarchy with no interesting tag
+			//so return null
+			return(null);
+		}
+		//Otherwise, recursively climb up the tree
+		return(FindTaggedParent (go.transform.parent.gameObject));
+	}
+	//This version of the function handles things if a Transform is passed in
+	public static GameObject FindTaggedParent(Transform t) {
+		return(FindTaggedParent (t.gameObject));
+	}
+
+
+//===================== Materials Functions ===============================\\
+
+	//Returns a list of all Materials on this GameObject or its children
+	static public Material[] GetAllMaterials( GameObject go ) {
+		List<Material> mats = new List<Material>();
+		if (go.renderer !=null) {
+			mats.Add(go.renderer.material);
+		}
+		foreach( Transform t in go.transform ) {
+			mats.AddRange( GetAllMaterials( t.gameObject) );
+		}
+		return( mats.ToArray() );
+	}
 }
