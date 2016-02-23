@@ -15,6 +15,9 @@ public class Hero : MonoBehaviour {
 	[SerializeField]
 	private float			_shieldLevel = 1;
 
+	//Weapon fields
+	public Weapon[]			weapons;
+
 	public bool				______________________;
 
 	public Bounds			bounds;
@@ -27,6 +30,12 @@ public class Hero : MonoBehaviour {
 	void Awake() {
 		S = this; //Set the Singleton
 		bounds = Utils.CombineBoundsOfChildren (this.gameObject);
+	}
+
+	void Start() {
+		//Reset the weapons to stert _Hero with 1 blaster
+		ClearWeapons ();
+		weapons [0].SetType (WeaponType.blaster);
 	}
 
 	void Update () {
@@ -79,9 +88,12 @@ public class Hero : MonoBehaviour {
 				shieldLevel--;
 				//Destroy the enemy
 				Destroy (go);	
+			} else if (go.tag == "PowerUp") {
+				//If the shield was triggered by a PowerUp
+				AbsorbPowerUp(go);
 			} else {
 				//Otherwise announce the original other.gameObject			
-				print ("Triggered: " + other.gameObject.name);
+				print ("Triggered: " + go.name);
 			}
 		}
 	}
@@ -98,6 +110,47 @@ public class Hero : MonoBehaviour {
 				//Tell Main.S to restart the game after a delay
 				Main.S.DelayedRestart( gameRestartDelay );
 			}
+		}
+	}
+
+	public void AbsorbPowerUp ( GameObject go ) {
+		PowerUp pu = go.GetComponent<PowerUp> ();
+		switch (pu.type) {
+		case WeaponType.shield: //If its the shield
+			shieldLevel++;
+			break;
+
+		default: //If its any Weapon PowerUp
+			//Check the current weapon type
+			if (pu.type == weapons [0].type) {
+				//then increase the number of weapons of this type
+				Weapon w = GetEmptyWeaponSlot (); //Find an available weapon
+				if (w != null) {
+					//Set it to pu.type
+					w.SetType (pu.type);
+				}
+			} else {
+				//If this is a different weapon
+				ClearWeapons ();
+				weapons [0].SetType (pu.type);
+			}
+			break;
+		}
+		pu.AbsorbedBy (this.gameObject);
+	}
+
+	Weapon GetEmptyWeaponSlot() {
+		for (int i=0; i<weapons.Length; i++) {
+			if (weapons [i].type == WeaponType.none) {
+				return(weapons [i]);
+			}
+		}
+		return (null);
+	}
+
+	void ClearWeapons() {
+		foreach (Weapon w in weapons) {
+			w.SetType (WeaponType.none);
 		}
 	}
 }
