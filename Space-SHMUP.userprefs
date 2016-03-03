@@ -1,19 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\Enemy_4.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\Parallax.cs">
     <Files>
-      <File FileName="Assets\_Scripts\Hero.cs" Line="39" Column="3" />
+      <File FileName="Assets\_Scripts\Hero.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Enemy_4.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Enemy.cs" Line="1" Column="1" />
       <File FileName="Assets\_Scripts\Utils.cs" Line="1" Column="1" />
       <File FileName="Assets\_Scripts\Main.cs" Line="81" Column="48" />
       <File FileName="Assets\_Scripts\Shield.cs" Line="1" Column="1" />
       <File FileName="Assets\_Scripts\Weapon.cs" Line="1" Column="1" />
       <File FileName="Assets\_Scripts\Projectile.cs" Line="1" Column="1" />
       <File FileName="Assets\_Scripts\PowerUp.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\Enemy_1.cs" Line="31" Column="31" />
-      <File FileName="Assets\_Scripts\Enemy_2.cs" Line="59" Column="47" />
-      <File FileName="Assets\_Scripts\Enemy_3.cs" Line="31" Column="29" />
-      <File FileName="Assets\_Scripts\Enemy_4.cs" Line="162" Column="30" />
-      <File FileName="Assets\_Scripts\Enemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Enemy_1.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Enemy_2.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Enemy_3.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Parallax.cs" Line="27" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
