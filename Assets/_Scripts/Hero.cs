@@ -65,6 +65,7 @@ public class Hero : MonoBehaviour {
 		//Then ensure the fireDelegate isnt null to avoid an error
 		if (Input.GetAxis ("Jump") == 1 && fireDelegate != null) {
 			fireDelegate ();
+			print ("working");
 		}
 	}
 
